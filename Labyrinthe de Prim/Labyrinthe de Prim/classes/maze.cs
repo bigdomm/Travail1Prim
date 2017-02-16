@@ -10,6 +10,7 @@ namespace Labyrinthe_de_Prim.classes
     {
         private int _hauteur, _largeur;
         private node[,] arrayNode;
+
         public maze(int hauteur, int largeur)
         {
             _hauteur = hauteur;
@@ -24,6 +25,7 @@ namespace Labyrinthe_de_Prim.classes
         {
             node n;
             edge e;
+            Random r = new Random();
 
             // Generation des nodes
             for (int a = 0; a< _hauteur; a++)
@@ -42,7 +44,7 @@ namespace Labyrinthe_de_Prim.classes
             {
                 for (int b = 0; b < _largeur-1; b++)
                 {
-                    e = new edge(arrayNode[a, b], arrayNode[a, b+1], 1);
+                    e = new edge(arrayNode[a, b], arrayNode[a, b+1],r.Next(1,10));
                     arrayNode[a, b]._eastEdge = e;
                     arrayNode[a, b+1]._westEdge = e;
 
@@ -54,7 +56,8 @@ namespace Labyrinthe_de_Prim.classes
             {
                 for (int b = 0; b < _largeur; b++)
                 {
-                    e = new edge(arrayNode[a, b], arrayNode[a+1, b], 1);
+
+                    e = new edge(arrayNode[a, b], arrayNode[a+1, b],r.Next(1,10));
                     arrayNode[a, b]._southEdge = e;
                     arrayNode[a+1, b]._northEdge = e;
 

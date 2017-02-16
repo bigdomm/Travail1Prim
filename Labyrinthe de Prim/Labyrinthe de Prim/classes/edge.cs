@@ -12,8 +12,7 @@ namespace Labyrinthe_de_Prim.classes
         private node _node1, _node2;
         private bool _display = false;
 
-
-        public edge(node node1, node node2, int value)
+        public edge(node node1, node node2,int value)
         {
             _node1 = node1;
             _node2 = node2;
