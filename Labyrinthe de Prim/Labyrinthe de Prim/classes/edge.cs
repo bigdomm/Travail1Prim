@@ -18,5 +18,10 @@ namespace Labyrinthe_de_Prim.classes
             _node2 = node2;
             _value = value;
         }
+
+        internal int getValue()
+        {
+            return _value;
+        }
     }
 }

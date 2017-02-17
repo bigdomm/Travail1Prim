@@ -69,15 +69,25 @@ namespace Labyrinthe_de_Prim.classes
         public void show()
         {
 
-            for (int a = 0; a < _largeur; a++)
+            for (int a = 0; a < _hauteur; a++)
             {
-                for (int b = 0; b < _hauteur; b++)
-                {
-                    Console.Write(arrayNode[a, b].ToString() + " ");
-                    
-                }
+                for (int b = 0; b < _largeur; b++)
+                {   
+                    if(arrayNode[a,b]._eastEdge != null)
+                        Console.Write("(" + arrayNode[a, b].ToString() +")"+ "-----" + arrayNode[a,b]._eastEdge.getValue() + "-----");
+                    else
+                        Console.Write("(" + arrayNode[a, b].ToString()+")");
 
+                }
                 Console.WriteLine();
+
+                for (int b = 0; b < _largeur; b++)
+                {
+                    if (arrayNode[a, b]._southEdge != null)
+                        Console.Write("   " + arrayNode[a, b]._southEdge.getValue()+"              ");
+                   
+                }
+               Console.WriteLine();
             }
 
         }
