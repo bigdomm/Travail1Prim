@@ -10,7 +10,7 @@ namespace Labyrinthe_de_Prim.classes
     {
         private int _x,_y;
         public edge _northEdge = null, _southEdge = null, _westEdge = null, _eastEdge = null;
-        private bool _isVisited = false, _isEntrance = false, _isExit = false;
+        public bool _isVisited = false, _isEntrance = false, _isExit = false;
         
 
         public node(int x,int y)

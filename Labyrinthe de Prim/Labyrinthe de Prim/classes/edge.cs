@@ -9,8 +9,8 @@ namespace Labyrinthe_de_Prim.classes
     public class edge
     {
         private int _value;
-        private node _node1, _node2;
-        private bool _display = false;
+        public node _node1, _node2;
+        public bool _display = false;
 
         public edge(node node1, node node2,int value)
         {

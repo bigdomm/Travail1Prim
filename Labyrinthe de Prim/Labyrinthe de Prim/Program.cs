@@ -16,6 +16,7 @@ namespace Labyrinthe_de_Prim
             m.generate();
 
             m.show();
+          
             Console.ReadLine();
         }
     }

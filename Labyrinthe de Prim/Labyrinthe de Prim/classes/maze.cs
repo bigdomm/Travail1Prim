@@ -10,6 +10,8 @@ namespace Labyrinthe_de_Prim.classes
     {
         private int _hauteur, _largeur;
         private node[,] arrayNode;
+        List<edge> listOfEdge = new List<edge>();
+        List<node> listOfNode = new List<node>();
 
         public maze(int hauteur, int largeur)
         {
@@ -64,6 +66,108 @@ namespace Labyrinthe_de_Prim.classes
                 }
             }
 
+            arrayNode[0, 0]._isEntrance = true;
+            arrayNode[0, 0]._isVisited = true;
+            arrayNode[_hauteur-1, _largeur-1]._isExit = true;
+
+            primAlgo();
+            
+        }
+
+        private void primAlgo()
+        {
+            
+
+            edge nextEdge = null;
+
+            int nbNode = (_hauteur ) * (_largeur );
+            /*
+            for (int a = 0; a < _hauteur; a++)
+            {
+                for (int b = 0; b < _largeur; b++)
+                {
+                    listOfNode.Add(arrayNode[a, b]);
+                }
+            }*/
+
+            node lastNode = arrayNode[0, 0];
+            listOfNode.Add(lastNode);
+
+            while (listOfNode.Count < nbNode)
+            {
+                primAddEdge(lastNode);
+                nextEdge = primVerifNextEdge();
+                nextEdge._display = true;
+
+                // MEttre tous les nodes reliés a visited
+                foreach (edge e in listOfEdge)
+                {
+                    if (e._display == true)
+                    {
+                        if (!listOfNode.Contains(e._node1))
+                        {
+                            listOfNode.Add(e._node1);
+                            lastNode = e._node1;
+                        }
+
+                        if (!listOfNode.Contains(e._node2))
+                        {
+                            listOfNode.Add(e._node2);
+                            lastNode = e._node2;
+                        }
+
+                    }
+                }
+
+                lastNode._isVisited = true;
+
+            }
+
+        }
+
+        public void primAddEdge(node n)
+        {
+            
+            if (n._eastEdge != null && !listOfEdge.Contains(n._eastEdge))
+            {
+                listOfEdge.Add(n._eastEdge);
+            }
+
+            if (n._southEdge != null && !listOfEdge.Contains(n._southEdge))
+            {
+                listOfEdge.Add(n._southEdge);
+            }
+
+            if (n._westEdge != null && !listOfEdge.Contains(n._westEdge))
+            {
+                listOfEdge.Add(n._westEdge);
+            }
+
+            if (n._northEdge != null && !listOfEdge.Contains(n._northEdge))
+            {
+                listOfEdge.Add(n._northEdge);
+            }
+
+
+
+            
+        }
+
+        public edge primVerifNextEdge()
+        {
+            int minEdgeValue = 100;
+            edge minEdge = null;
+
+            foreach(edge e in listOfEdge)
+            {
+                if (e.getValue() < minEdgeValue && e._display == false && (e._node1._isVisited == false || e._node2._isVisited==false))
+                {
+                    minEdgeValue = e.getValue();
+                    minEdge = e;
+                }
+            }
+
+            return minEdge;
         }
 
         public void show()
