@@ -21,7 +21,13 @@ namespace Labyrinthe_de_Prim.classes
 
         public override string ToString()
         {
-            return _x + " , " + _y;
+            if (_isEntrance)
+                return "E";
+            else if (_isExit)
+                return "S";
+            else
+                return "X";
         }
+        
     }
 }

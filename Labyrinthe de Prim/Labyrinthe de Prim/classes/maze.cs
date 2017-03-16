@@ -123,6 +123,7 @@ namespace Labyrinthe_de_Prim.classes
 
             }
 
+
         }
 
         public void primAddEdge(node n)
@@ -173,27 +174,60 @@ namespace Labyrinthe_de_Prim.classes
         public void show()
         {
 
+            /* for (int a = 0; a < _hauteur; a++)
+             {
+                 for (int b = 0; b < _largeur; b++)
+                 {
+                     if (arrayNode[a, b]._eastEdge != null)
+                         Console.Write("(" + arrayNode[a, b].ToString() + ")" + "-----" + arrayNode[a, b]._eastEdge.getValue() + "-----");
+                     else
+                         Console.Write("(" + arrayNode[a, b].ToString() + ")");
+
+                 }
+                 Console.WriteLine();
+
+                 for (int b = 0; b < _largeur; b++)
+                 {
+                     if (arrayNode[a, b]._southEdge != null)
+                         Console.Write("   " + arrayNode[a, b]._southEdge.getValue() + "              ");
+
+                 }
+                 Console.WriteLine();
+             }*/
+
+
             for (int a = 0; a < _hauteur; a++)
             {
                 for (int b = 0; b < _largeur; b++)
-                {   
-                    if(arrayNode[a,b]._eastEdge != null)
-                        Console.Write("(" + arrayNode[a, b].ToString() +")"+ "-----" + arrayNode[a,b]._eastEdge.getValue() + "-----");
+                {
+                    if (arrayNode[a, b]._eastEdge != null)
+                    {
+                        if (arrayNode[a, b]._eastEdge._display == true)
+                            Console.Write("(" + arrayNode[a, b].ToString() + ")" + "-----");
+                        else
+                            Console.Write("(" + arrayNode[a, b].ToString() + ")" + "     ");
+                    }
                     else
-                        Console.Write("(" + arrayNode[a, b].ToString()+")");
-
+                        Console.Write("(" + arrayNode[a, b].ToString() + ")");
                 }
                 Console.WriteLine();
 
                 for (int b = 0; b < _largeur; b++)
                 {
                     if (arrayNode[a, b]._southEdge != null)
-                        Console.Write("   " + arrayNode[a, b]._southEdge.getValue()+"              ");
-                   
-                }
-               Console.WriteLine();
-            }
+                    {
+                        if (arrayNode[a, b]._southEdge._display == true)
+                            Console.Write(" |      ");
+                        else
+                            Console.Write("        ");
 
+                    }
+                        
+
+                }
+                Console.WriteLine();
+
+            }
         }
     }
 }
