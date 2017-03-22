@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\edge.cs" />
-    <Compile Include="classes\maze.cs" />
-    <Compile Include="classes\node.cs" />
+    <Compile Include="Classes\Edge.cs" />
+    <Compile Include="Classes\Maze.cs" />
+    <Compile Include="Classes\Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

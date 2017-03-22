@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Labyrinthe_de_Prim.classes
 {
-    public class edge
+    public class Edge
     {
         private int _value;
-        public node _node1, _node2;
+        public Node _node1, _node2;
         public bool _display = false;
 
-        public edge(node node1, node node2,int value)
+        public Edge(Node node1, Node node2,int value)
         {
             _node1 = node1;
             _node2 = node2;

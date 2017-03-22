@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Labyrinthe_de_Prim.classes
 {
-    public class node
+    public class Node
     {
         private int _x,_y;
-        public edge _northEdge = null, _southEdge = null, _westEdge = null, _eastEdge = null;
+        public Edge _northEdge = null, _southEdge = null, _westEdge = null, _eastEdge = null;
         public bool _isVisited = false, _isEntrance = false, _isExit = false;
         
 
-        public node(int x,int y)
+        public Node(int x,int y)
         {
             _x = x;
             _y = y;

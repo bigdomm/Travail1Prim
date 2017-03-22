@@ -6,27 +6,30 @@ using System.Threading.Tasks;
 
 namespace Labyrinthe_de_Prim.classes
 {
-    public class maze
+    public class Maze
     {
         private int _hauteur, _largeur;
-        private node[,] arrayNode;
-        List<edge> listOfEdge = new List<edge>();
-        List<node> listOfNode = new List<node>();
+        private Node[,] arrayNode;
+        List<Edge> listOfEdge = new List<Edge>();
+        List<Node> listOfNode = new List<Node>();
 
-        public maze(int hauteur, int largeur)
+        public Maze(int hauteur, int largeur)
         {
             _hauteur = hauteur;
             _largeur = largeur;
-            arrayNode = new node[hauteur,largeur];
+            arrayNode = new Node[hauteur,largeur];
         }
+        public Maze()
+        {
 
+        }
         /// <summary>
         /// Fonction qui genere les nodes et les edges (Noeuds et arêtes)
         /// </summary>
-        public void generate()
+        public void Generate()
         {
-            node n;
-            edge e;
+            Node n;
+            Edge e;
             Random r = new Random();
 
             // Generation des nodes
@@ -34,7 +37,7 @@ namespace Labyrinthe_de_Prim.classes
             {
                 for(int b = 0; b < _largeur; b++)
                 {
-                    n = new node(a, b);
+                    n = new Node(a, b);
                     arrayNode[a, b] = n;
 
 
@@ -46,7 +49,7 @@ namespace Labyrinthe_de_Prim.classes
             {
                 for (int b = 0; b < _largeur-1; b++)
                 {
-                    e = new edge(arrayNode[a, b], arrayNode[a, b+1],r.Next(1,10));
+                    e = new Edge(arrayNode[a, b], arrayNode[a, b+1],r.Next(1,10));
                     arrayNode[a, b]._eastEdge = e;
                     arrayNode[a, b+1]._westEdge = e;
 
@@ -59,7 +62,7 @@ namespace Labyrinthe_de_Prim.classes
                 for (int b = 0; b < _largeur; b++)
                 {
 
-                    e = new edge(arrayNode[a, b], arrayNode[a+1, b],r.Next(1,10));
+                    e = new Edge(arrayNode[a, b], arrayNode[a+1, b],r.Next(1,10));
                     arrayNode[a, b]._southEdge = e;
                     arrayNode[a+1, b]._northEdge = e;
 
@@ -76,21 +79,12 @@ namespace Labyrinthe_de_Prim.classes
 
         private void primAlgo()
         {
-            
 
-            edge nextEdge = null;
 
-            int nbNode = (_hauteur ) * (_largeur );
-            /*
-            for (int a = 0; a < _hauteur; a++)
-            {
-                for (int b = 0; b < _largeur; b++)
-                {
-                    listOfNode.Add(arrayNode[a, b]);
-                }
-            }*/
+            Edge nextEdge = null;
 
-            node lastNode = arrayNode[0, 0];
+            int nbNode = (_hauteur ) * (_largeur );    
+            Node lastNode = arrayNode[0, 0];
             listOfNode.Add(lastNode);
 
             while (listOfNode.Count < nbNode)
@@ -100,7 +94,7 @@ namespace Labyrinthe_de_Prim.classes
                 nextEdge._display = true;
 
                 // MEttre tous les nodes reliés a visited
-                foreach (edge e in listOfEdge)
+                foreach (Edge e in listOfEdge)
                 {
                     if (e._display == true)
                     {
@@ -126,7 +120,7 @@ namespace Labyrinthe_de_Prim.classes
 
         }
 
-        public void primAddEdge(node n)
+        public void primAddEdge(Node n)
         {
             
             if (n._eastEdge != null && !listOfEdge.Contains(n._eastEdge))
@@ -154,12 +148,12 @@ namespace Labyrinthe_de_Prim.classes
             
         }
 
-        public edge primVerifNextEdge()
+        public Edge primVerifNextEdge()
         {
             int minEdgeValue = 100;
-            edge minEdge = null;
+            Edge minEdge = null;
 
-            foreach(edge e in listOfEdge)
+            foreach(Edge e in listOfEdge)
             {
                 if (e.getValue() < minEdgeValue && e._display == false && (e._node1._isVisited == false || e._node2._isVisited==false))
                 {
@@ -171,30 +165,8 @@ namespace Labyrinthe_de_Prim.classes
             return minEdge;
         }
 
-        public void show()
+        public void Show()
         {
-
-            /* for (int a = 0; a < _hauteur; a++)
-             {
-                 for (int b = 0; b < _largeur; b++)
-                 {
-                     if (arrayNode[a, b]._eastEdge != null)
-                         Console.Write("(" + arrayNode[a, b].ToString() + ")" + "-----" + arrayNode[a, b]._eastEdge.getValue() + "-----");
-                     else
-                         Console.Write("(" + arrayNode[a, b].ToString() + ")");
-
-                 }
-                 Console.WriteLine();
-
-                 for (int b = 0; b < _largeur; b++)
-                 {
-                     if (arrayNode[a, b]._southEdge != null)
-                         Console.Write("   " + arrayNode[a, b]._southEdge.getValue() + "              ");
-
-                 }
-                 Console.WriteLine();
-             }*/
-
 
             for (int a = 0; a < _hauteur; a++)
             {
